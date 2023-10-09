@@ -6,4 +6,4 @@ Frontend en Javascript
 
 Langages utilisés : Java, Javascript, SQL
 
-Outils et technologies : Grizzly/Jersey, PostgresSQL, Junit, Mockito, Jenkins
+Outils et technologies : Grizzly/Jersey, PostgreSQL, Junit, Mockito, Jenkins
