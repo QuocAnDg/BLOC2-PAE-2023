@@ -1,0 +1,28 @@
+### get all item's types
+GET {{baseUrl}}/availibilities/all
+### Login with admin
+POST {{baseUrl}}/user/login
+Content-Type: application/json
+
+{
+  "email":"test@gmail.com",
+  "password":"test"
+}
+
+> {%
+  client.global.set("admin", response.body.token);
+%}
+
+### get all availabilities dates
+GET {{baseUrl}}/availability/all
+Content-Type: application/json
+
+### Add availability
+POST {{baseUrl}}/availability/add
+Content-Type: application/json
+Authorization: {{admin}}
+
+{
+"date": "2025-09-09"
+}
+

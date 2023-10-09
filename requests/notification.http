@@ -1,0 +1,15 @@
+### Login with default user credentials
+POST {{baseUrl}}/user/login
+Content-Type: application/json
+
+{
+  "email":"test@gmail.com",
+  "password":"test"
+}
+
+> {%
+    client.global.set("admin", response.body.token);
+%}
+
+### Get all the notifications for the user with id 4
+GET {{baseUrl}}/notifications/all?id=4

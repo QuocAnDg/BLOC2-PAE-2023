@@ -1,0 +1,37 @@
+### Login with default user credentials
+POST {{baseUrl}}/user/login
+Content-Type: application/json
+
+{
+  "email":"test@gmail.com",
+  "password":"test"
+}
+
+> {%
+  client.global.set("testtoken", response.body.token);
+%}
+
+### Login with default user credentials
+GET {{baseUrl}}/user/auth
+Content-Type: application/json
+Authorization: {{testtoken}}
+
+### Get all users
+GET {{baseUrl}}/user
+Content-Type: application/json
+Authorization: {{testtoken}}
+
+### Update the role of a user from user to helper
+PATCH {{baseUrl}}/user/5
+Content-Type: application/json
+Authorization: {{testtoken}}
+
+### Change the password of a user
+PATCH {{baseUrl}}/user/changePassword/6
+Content-Type: application/json
+Authorization: {{testtoken}}
+
+{
+  "oldPassword": "test123",
+  "newPassword": "test"
+}

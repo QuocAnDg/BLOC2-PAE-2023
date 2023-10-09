@@ -1,0 +1,136 @@
+### Login with default user credentials
+POST {{baseUrl}}/user/login
+Content-Type: application/json
+
+{
+  "email":"test@gmail.com",
+  "password":"test"
+}
+
+> {%
+  client.global.set("admin", response.body.token);
+%}
+
+### Get the item with id 5
+GET {{baseUrl}}/items/4
+
+### Get all items
+GET {{baseUrl}}/items/all
+Authorization: {{admin}}
+
+### Get all items from user with id 5
+GET {{baseUrl}}/items/all/5
+Authorization: {{admin}}
+
+### Get all offered items with authorization admin
+GET {{baseUrl}}/items/allOffered
+Authorization: {{admin}}
+
+### Get all items in state
+GET {{baseUrl}}/items/startingitems
+
+### Get all "Meuble type" items
+GET {{baseUrl}}/items?type=Meuble
+
+### Search items that contains "Ch" in their name
+GET {{baseUrl}}/items/search?name=Chaise
+
+### Search items that contains "Ch" in their name
+GET {{baseUrl}}/items/search?name=Fau
+
+### update the state of an item to "confirmed"
+PATCH {{baseUrl}}/items/confirm/6
+Authorization: {{admin}}
+
+### update the description and type of an item
+PATCH {{baseUrl}}/items/updateInformation/1
+Content-Type: application/json
+Authorization: {{admin}}
+
+{
+  "description": "Table IKEA",
+  "type": "Table"
+}
+
+### update the state of an item to "denied"
+PATCH {{baseUrl}}/items/deny/6
+Content-Type: text/plain
+Authorization: {{admin}}
+
+test
+
+### update the state of an item to "in_workshop"
+PATCH {{baseUrl}}/items/updateState/3
+Content-Type: text/plain
+Authorization: {{admin}}
+
+in_workshop
+
+### update the state of an item to "in_store"
+PATCH {{baseUrl}}/items/updateState/3
+Content-Type: text/plain
+Authorization: {{admin}}
+
+in_store
+
+### update the state of an item to "for_sale"
+PATCH {{baseUrl}}/items/updateState/3/2.5
+Authorization: {{admin}}
+
+### update the state of an item to "sold"
+PATCH {{baseUrl}}/items/updateState/3
+Content-Type: text/plain
+Authorization: {{admin}}
+
+sold
+
+### update the state of an item to "removed"
+PATCH {{baseUrl}}/items/updateState/3
+Content-Type: text/plain
+Authorization: {{admin}}
+
+### get all item's types
+GET {{baseUrl}}/items/allTypes
+
+### Add Offer Item (quidam)
+POST {{baseUrl}}/items/offerItemUser
+Content-Type: multipart/form-data; boundary=------------------------abcdef123456
+Authorization: {{admin}}
+
+--------------------------abcdef123456
+Content-Disposition: form-data; name="file"; filename="example.png"
+Content-Type: image/png
+
+--------------------------abcdef123456
+Content-Disposition: form-data; name="name"
+
+test
+--------------------------abcdef123456
+Content-Disposition: form-data; name="type"
+
+Chaise
+--------------------------abcdef123456
+Content-Disposition: form-data; name="description"
+
+chaise test
+
+--------------------------abcdef123456
+Content-Disposition: form-data; name="meetingDate"
+
+2023-01-01
+--------------------------abcdef123456
+Content-Disposition: form-data; name="timeSlot"
+
+evening
+
+### update the state of an "in_store" item to "sold" and set the price to 2.5€
+PATCH {{baseUrl}}/items/sellFromStore/1/2.5
+Authorization: {{admin}}
+
+
+### Search items of type "Meuble"
+GET {{baseUrl}}/items/typesearch?type=Couverture
+
+
+### Search items of state "for_sale"
+GET {{baseUrl}}/items/statesearch?state=for_sale

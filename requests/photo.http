@@ -1,0 +1,13 @@
+### Upload a photo
+POST http://{{baseUrl}}/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="icon.png"
+
+< ./icon.png
+--WebAppBoundary--
+
+### Get all avatars
+GET {{baseUrl}}/photo/avatars
+Content-Type: application/json
